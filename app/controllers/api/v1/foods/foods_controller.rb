@@ -9,7 +9,13 @@ class Api::V1::Foods::FoodsController < ApplicationController
     render json: Food.find(params[:id])
   end
 
+  def create
+    @food = Food.create(name: params[:food][:name], calories: params[:food][:calories])
+    food_saved?
+  end
+
   private
+
     def set_food
       @food = Food.find_by(id: params[:id])
     end
@@ -19,6 +25,14 @@ class Api::V1::Foods::FoodsController < ApplicationController
         render :json => {:error => "not-found"}.to_json, :status => 404
       else
         render json: @food
+      end
+    end
+
+    def food_saved?
+      if @food.save
+        render json: @food
+      else
+        render :json => {:error => "missing required fields"}.to_json, :status => 400
       end
     end
 end

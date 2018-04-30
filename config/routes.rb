@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       namespace :foods do
         get '/', :to => "foods#index"
         get '/:id', :to => "foods#show"
+        post '/', :to => "foods#create"
       end
     end
   end
