@@ -7,11 +7,15 @@ context 'patch to api/v1/foods/:id' do
     payload_json = {
       food: {
         "name": "Carrots",
-        "calories": 300
+        "calories": 30
       }
     }
 
     patch "/api/v1/foods/#{spinach_pie.id}", params: payload_json
+
+    res = JSON.parse(response.body, symbolize_names: true)
+    expect(res[:name]).to eq("Carrots")
+    expect(res[:calories]).to eq(30)
   end
 
   it "returns a 400 error if attributes are invalid" do
