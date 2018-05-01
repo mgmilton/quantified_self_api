@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       namespace :meals do
         get "/", :to => "meals#index"
         get '/:id/foods', :to => "meals#show"
+        post '/:meal_id/foods/:id', :to => "meals#create"
       end
     end
   end
