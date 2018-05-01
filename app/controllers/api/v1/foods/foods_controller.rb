@@ -1,5 +1,6 @@
 class Api::V1::Foods::FoodsController < ApplicationController
   before_action :set_food, :nil_food?, only: [:show]
+  before_action :set_food, only: [:update]
 
   def index
     render json: Food.all
@@ -11,6 +12,11 @@ class Api::V1::Foods::FoodsController < ApplicationController
 
   def create
     @food = Food.create(name: params[:food][:name], calories: params[:food][:calories])
+    food_saved?
+  end
+
+  def update
+    @food.update(name: params[:food][:name], calories: params[:food][:calories])
     food_saved?
   end
 
