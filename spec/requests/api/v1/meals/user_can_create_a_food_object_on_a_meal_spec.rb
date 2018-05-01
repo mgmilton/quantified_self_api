@@ -24,6 +24,12 @@ context "post to api/v1/meals/:meal_id/foods/:id" do
   end
 
   it "returns a 404 error if meal does not exist" do
+    spanakopita = create(:food)
 
+    post "/api/v1/meals/39303343/foods/#{spanakopita.id}"
+
+    error = JSON.parse(response.body, symbolize_names: true)
+    expect(response.status).to eq(404)
+    expect(error[:error]).to eq("not-found")
   end
 end
