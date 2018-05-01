@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :meal_food do
-    meal nil
-    food nil
+    meal
+    food 
   end
 end
