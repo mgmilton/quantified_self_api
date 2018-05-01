@@ -8,6 +8,11 @@ Rails.application.routes.draw do
         patch '/:id', :to => "foods#update"
         delete '/:id', :to => "foods#destroy"
       end
+
+      namespace :meals do
+        get "/", :to => "meals#index"
+        get '/:id/foods', :to => "meals#show"
+      end
     end
   end
 end
