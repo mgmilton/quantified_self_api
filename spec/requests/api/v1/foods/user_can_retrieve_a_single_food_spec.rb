@@ -1,10 +1,9 @@
 require 'rails_helper'
-
 context 'get to api/v1/foods/:id' do
   it "returns a matching food object" do
-    blood_sausage = create(:food, id: 10, name: 'morcilla')
+    blood_sausage = create(:food, name: 'morcilla')
 
-    get "/api/v1/foods/10"
+    get "/api/v1/foods/#{blood_sausage.id}"
 
     food = JSON.parse(response.body)
     expect(response).to be_success

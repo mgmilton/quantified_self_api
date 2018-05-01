@@ -1,13 +1,11 @@
 class Api::V1::Foods::FoodsController < ApplicationController
   before_action :set_food, :nil_food?, only: [:show]
-  before_action :set_food, only: [:update]
 
   def index
     render json: Food.all
   end
 
   def show
-    render json: Food.find(params[:id])
   end
 
   def create
@@ -16,6 +14,7 @@ class Api::V1::Foods::FoodsController < ApplicationController
   end
 
   def update
+    set_food
     @food.update(name: params[:food][:name], calories: params[:food][:calories])
     food_saved?
   end
