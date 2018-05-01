@@ -2,7 +2,7 @@ require 'rails_helper'
 
 context 'get to api/v1/foods' do
   it "returns all food objects" do
-    spanikopita = create(:food)
+    spanakopita = create(:food)
     pie = create(:food, name: 'pie')
 
     get "/api/v1/foods"
