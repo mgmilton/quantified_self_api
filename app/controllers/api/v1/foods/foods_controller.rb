@@ -21,7 +21,7 @@ class Api::V1::Foods::FoodsController < ApplicationController
   end
 
   def destroy
-    @food.destroy
+    food_destroy?
   end
 
   private
@@ -46,7 +46,11 @@ class Api::V1::Foods::FoodsController < ApplicationController
       end
     end
 
-    def food_exist?
-      render :json => {:error => "not-found"}.to_json, :status => 404 if @food.nil?
+    def food_destroy?
+      if @food.nil?
+        render :json => {:error => "not-found"}.to_json, :status => 404
+      else
+        @food.destroy
+      end
     end
 end
