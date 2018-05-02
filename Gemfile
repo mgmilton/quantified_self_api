@@ -13,6 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'active_model_serializers'
 gem 'figaro'
 gem 'faraday'
+gem 'rack-cors', :require => 'rack/cors'
 
 
 group :development, :test do

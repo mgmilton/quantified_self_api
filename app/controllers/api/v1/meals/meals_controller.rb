@@ -1,7 +1,7 @@
 class Api::V1::Meals::MealsController < ApplicationController
   before_action :set_meal, only: [:show]
   before_action :set_food_and_meal, only: [:create, :destroy]
-
+  skip_before_action :verify_authenticity_token
   def index
     render json: Meal.all
   end
